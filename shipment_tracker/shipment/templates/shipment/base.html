@@ -1,0 +1,69 @@
+<!-- shipments/templates/shipments/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: url('{% static "images/745223.png" %}') center;
+            background-size: 200px 200px;
+            background-repeat: no-repeat;
+
+        }
+
+        .container {
+            flex: 1;
+        }
+    </style>
+    <title>{% block title %}Shipment App{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home_for_unauthenticated' %}">Jordan Shipping Company</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_shipments' %}">View Shipments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_info' %}">Account Info</a>
+                    </li>
+                    <li class="nav-item">
+            <a class="nav-link" href="{% url 'location_page' %}">Our Location</a>
+        </li>
+                </ul>
+                {% if user.is_authenticated %}
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout_view' %}">Log Out</a>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+        <div class="container mt-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <footer class="footer mt-5 text-center">
+<h3 style="text-align: left;"> About us</h3>
+<h6 style="text-align: center;">Based in the vibrant city of Amman, Jordan Shipping Company is a trusted and reliable logistics provider specializing in internal shipping within the cities of Jordan. With a deep understanding of the local market and a strong network of connections, they offer efficient and seamless transportation solutions to businesses and individuals across the country. Whether it's delivering goods from Amman to Aqaba or from Irbid to Petra, Jordan Shipping Company takes pride in their expertise and attention to detail. Their dedicated team ensures that each shipment is handled with care, from pickup to final delivery, providing timely and secure services that cater to the unique needs of their clients. With their extensive knowledge of the local roads, regulations, and customs procedures, Jordan Shipping Company is the go-to partner for reliable and hassle-free internal shipping in Jordan.</h6>
+    <p>&copy; 2024 Jordan Shipping Company. All rights reserved.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'shipment/base.html' %}
+
+{% block title %}View Shipments{% endblock %}
+
+{% block content %}
+  <h2>Your Shipments</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Shipment Source</th>
+        <th scope="col">Shipment Destination</th>
+        <th scope="col">Shipment Date</th>
+        <th scope="col">Shipment Weight</th>
+         <th scope="col">Shipment Price</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for shipment in shipments %}
+        <tr>
+          <td>{{ shipment.from_city }}</td>
+          <td>{{ shipment.to_city }}</td>
+          <td>{{ shipment.shipment_date }}</td>
+          <td>{{ shipment.weight}} kg</td>
+             <td>{{ shipment.calculate_price }} JD</td>
+          <td>
+            <a href="{% url 'update_shipment' shipment.id %}" class="btn btn-warning">Update</a>
+            <a href="{% url 'delete_shipment' shipment.id %}" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'add_shipment' %}" class="btn btn-primary">Add Shipment</a>
+{% endblock %}
