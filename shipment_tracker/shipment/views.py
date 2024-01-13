@@ -1,9 +1,7 @@
-# shipments/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from .models import Shipment
 from .forms import ShipmentForm, SignUpForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
